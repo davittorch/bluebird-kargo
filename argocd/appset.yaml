@@ -20,7 +20,7 @@ spec:
         namespace: guestbook-{{path.basename}}
         # Specify either a cluster destination name or server address:
         # name: REPLACEME
-        server: https://2950BC2BB66F81DE4E44EC1FACD5B98A.gr7.us-east-1.eks.amazonaws.com
+        server: https://kubernetes.default.svc
       project: guestbook
       source:
         path: app # default render path

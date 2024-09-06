@@ -10,7 +10,7 @@ spec:
     warehouse: guestbook
   promotionMechanisms:
     gitRepoUpdates:
-    - repoURL: https://github.com/akuity/kargo-advanced.git
+    - repoURL: https://github.com/davittorch/kargo-advanced.git
       writeBranch: env/dev
       render: {}
     argoCDAppUpdates:
@@ -30,7 +30,7 @@ spec:
       - name: dev
   promotionMechanisms:
     gitRepoUpdates:
-    - repoURL: https://github.com/akuity/kargo-advanced.git
+    - repoURL: https://github.com/davittorch/kargo-advanced.git
       writeBranch: env/staging
       render: {}
     argoCDAppUpdates:
@@ -50,7 +50,7 @@ spec:
       - name: staging
   promotionMechanisms:
     gitRepoUpdates:
-    - repoURL: https://github.com/akuity/kargo-advanced.git
+    - repoURL: https://github.com/davittorch/kargo-advanced.git
       writeBranch: env/ab-test-a
       render: {}
     argoCDAppUpdates:
@@ -73,7 +73,7 @@ spec:
       - name: staging
   promotionMechanisms:
     gitRepoUpdates:
-    - repoURL: https://github.com/akuity/kargo-advanced.git
+    - repoURL: https://github.com/davittorch/kargo-advanced.git
       writeBranch: env/ab-test-b
       render: {}
     argoCDAppUpdates:
@@ -110,7 +110,7 @@ spec:
       - name: prod
   promotionMechanisms:
     gitRepoUpdates:
-    - repoURL: https://github.com/akuity/kargo-advanced.git
+    - repoURL: https://github.com/davittorch/kargo-advanced.git
       writeBranch: env/prod-west
       render: {}
     argoCDAppUpdates:
@@ -130,7 +130,7 @@ spec:
       - name: prod
   promotionMechanisms:
     gitRepoUpdates:
-    - repoURL: https://github.com/akuity/kargo-advanced.git
+    - repoURL: https://github.com/davittorch/kargo-advanced.git
       writeBranch: env/prod-central
       render: {}
     argoCDAppUpdates:
@@ -150,7 +150,7 @@ spec:
       - name: prod
   promotionMechanisms:
     gitRepoUpdates:
-    - repoURL: https://github.com/akuity/kargo-advanced.git
+    - repoURL: https://github.com/davittorch/kargo-advanced.git
       writeBranch: env/prod-east
       render: {}
     argoCDAppUpdates:
