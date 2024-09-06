@@ -1,0 +1,42 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: keda
+  namespace: argocd-apps
+spec:
+  project: default
+  source:
+    repoURL: 'https://kedacore.github.io/charts'
+    targetRevision: 'v2.14.0'
+    chart: keda
+    helm:
+      values: |
+        watchNamespace: ""
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: argocd-apps
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - ServerSideApply=true
+---
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: cpu-scaled-object
+  namespace: bluebird
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: deployment
+    name: argocd-apps-bluebird-chart
+  minReplicaCount: 1
+  maxReplicaCount: 3
+  triggers:
+    - type: memory
+      metricType: Utilization
+      metadata:
+        value: "80"

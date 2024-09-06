@@ -6,7 +6,7 @@ metadata:
 spec:
   generators:
   - git:
-      repoURL: https://github.com/akuity/kargo-advanced.git
+      repoURL: https://github.com/davittorch/bluebird-kargo.git
       revision: HEAD
       directories:
       - path: env/*
@@ -20,9 +20,9 @@ spec:
         namespace: guestbook-{{path.basename}}
         # Specify either a cluster destination name or server address:
         # name: REPLACEME
-        # server: https://REPLACEME
+        server: https://2950BC2BB66F81DE4E44EC1FACD5B98A.gr7.us-east-1.eks.amazonaws.com
       project: guestbook
       source:
         path: app # default render path
-        repoURL: https://github.com/akuity/kargo-advanced.git
+        repoURL: https://github.com/davittorch/bluebird-kargo.git
         targetRevision: env/{{path.basename}}
