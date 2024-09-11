@@ -23,4 +23,4 @@ spec:
       source:
         path: base/apps
         repoURL: https://github.com/davittorch/bluebird-kargo.git
-        targetRevision: env/{{path.basename}}
+        targetRevision: main
