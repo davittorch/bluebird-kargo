@@ -31,7 +31,7 @@ spec:
   promotionMechanisms:
     gitRepoUpdates:
     - repoURL: https://github.com/davittorch/bluebird-kargo.git
-      writeBranch: env/dev
+      writeBranch: main
       kustomize:
         images:
         - image: docker.io/davittorchyan/kargo:v1.0
@@ -76,7 +76,7 @@ spec:
   promotionMechanisms:
     gitRepoUpdates:
     - repoURL: https://github.com/davittorch/bluebird-kargo.git
-      writeBranch: env/staging
+      writeBranch: main
       kustomize:
         images:
         - image: docker.io/davittorchyan/kargo:v1.0
@@ -181,7 +181,7 @@ spec:
   promotionMechanisms:
     gitRepoUpdates:
     - repoURL: https://github.com/davittorch/bluebird-kargo.git
-      writeBranch: env/prod-west
+      writeBranch: main
       kustomize:
         images:
         - image: docker.io/davittorchyan/kargo:v1.0
@@ -220,7 +220,7 @@ spec:
   promotionMechanisms:
     gitRepoUpdates:
     - repoURL: https://github.com/davittorch/bluebird-kargo.git
-      writeBranch: env/prod-central
+      writeBranch: main
       kustomize:
         images:
         - image: docker.io/davittorchyan/kargo:v1.0
@@ -259,7 +259,7 @@ spec:
   promotionMechanisms:
     gitRepoUpdates:
     - repoURL: https://github.com/davittorch/bluebird-kargo.git
-      writeBranch: env/prod-east
+      writeBranch: main
       kustomize:
         images:
         - image: docker.io/davittorchyan/kargo:v1.0
