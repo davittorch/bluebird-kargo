@@ -28,14 +28,14 @@ spec:
       writeBranch: env/dev
       kustomize:
         images:
-        - image: 211125651847.dkr.ecr.us-east-1.amazonaws.com/bluebird:v1.0
+        - image: docker.io/davittorchyan/kargo:v1.0
           path: stages/test
     argoCDAppUpdates:
-    - appName: guestbook
+    - appName: bluebird
   requestedFreight:
     - origin:
         kind: Warehouse
-        name: guestbook
+        name: bluebird
       sources:
         direct: true
       # gitRepoUpdates:
@@ -67,7 +67,7 @@ spec:
   requestedFreight:
     - origin:
         kind: Warehouse
-        name: guestbook
+        name: bluebird
       sources:
         stages:
         - dev
@@ -77,10 +77,10 @@ spec:
       writeBranch: env/staging
       kustomize:
         images:
-        - image: 211125651847.dkr.ecr.us-east-1.amazonaws.com/bluebird:v1.0
+        - image: docker.io/davittorchyan/kargo:v1.0
           path: stages/staging
     argoCDAppUpdates:
-    - appName: guestbook
+    - appName: bluebird
 
 ---
 # apiVersion: kargo.akuity.io/v1alpha1
@@ -145,7 +145,7 @@ spec:
   requestedFreight:
     - origin:
         kind: Warehouse
-        name: guestbook
+        name: bluebird
       sources:
         stages:
         - staging
@@ -172,7 +172,7 @@ spec:
   requestedFreight:
     - origin:
         kind: Warehouse
-        name: guestbook
+        name: bluebird
       sources:
         stages:
         - prod
@@ -182,10 +182,10 @@ spec:
       writeBranch: env/prod-west
       kustomize:
         images:
-        - image: 211125651847.dkr.ecr.us-east-1.amazonaws.com/bluebird:v1.0
+        - image: docker.io/davittorchyan/kargo:v1.0
           path: stages/prod-west
     argoCDAppUpdates:
-    - appName: guestbook
+    - appName: bluebird
 
 ---
 apiVersion: kargo.akuity.io/v1alpha1
@@ -202,7 +202,7 @@ spec:
   requestedFreight:
     - origin:
         kind: Warehouse
-        name: guestbook
+        name: bluebird
       sources:
         stages:
         - prod
@@ -212,10 +212,10 @@ spec:
       writeBranch: env/prod-central
       kustomize:
         images:
-        - image: 211125651847.dkr.ecr.us-east-1.amazonaws.com/bluebird:v1.0
+        - image: docker.io/davittorchyan/kargo:v1.0
           path: stages/prod-central
     argoCDAppUpdates:
-    - appName: guestbook
+    - appName: bluebird
 
 ---
 apiVersion: kargo.akuity.io/v1alpha1
@@ -232,7 +232,7 @@ spec:
   requestedFreight:
     - origin:
         kind: Warehouse
-        name: guestbook
+        name: bluebird
       sources:
         stages:
         - prod
@@ -248,7 +248,7 @@ spec:
       writeBranch: env/prod-east
       kustomize:
         images:
-        - image: 211125651847.dkr.ecr.us-east-1.amazonaws.com/bluebird:v1.0
+        - image: docker.io/davittorchyan/kargo:v1.0
           path: stages/prod-east
     argoCDAppUpdates:
-    - appName: guestbook
+    - appName: bluebird

@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: guestbook
+  name: bluebird
   namespace: argocd-apps
 spec:
   generators:
@@ -12,17 +12,15 @@ spec:
       - path: env/*
   template:
     metadata:
-      name: guestbook-{{path.basename}}
+      name: bluebird-{{path.basename}}
       annotations:
         kargo.akuity.io/authorized-stage: kargo-advanced:*
     spec:
       destination:
-        namespace: guestbook-{{path.basename}}
-        # Specify either a cluster destination name or server address:
-        # name: REPLACEME
+        namespace: bluebird-{{path.basename}}
         server: https://kubernetes.default.svc
-      project: guestbook
+      project: bluebird
       source:
-        path: app # default render path
+        path: base/apps
         repoURL: https://github.com/davittorch/bluebird-kargo.git
         targetRevision: env/{{path.basename}}

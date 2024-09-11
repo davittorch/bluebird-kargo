@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
-  name: guestbook
+  name: bluebird
   namespace: argocd-apps
 spec:
   clusterResourceWhitelist:
@@ -9,7 +9,7 @@ spec:
     kind: Namespace
   destinations:
   - name: '*'
-    namespace: guestbook-*
+    namespace: bluebird*
     server: '*'
   namespaceResourceWhitelist:
   - group: '*'

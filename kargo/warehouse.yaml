@@ -1,16 +1,16 @@
 apiVersion: kargo.akuity.io/v1alpha1
 kind: Warehouse
 metadata:
-  name: guestbook
+  name: bluebird
   namespace: kargo-advanced
 spec:
   freightCreationPolicy: Automatic
   interval: "1m0s"
   subscriptions:
   - image:
-      repoURL: 211125651847.dkr.ecr.us-east-1.amazonaws.com/bluebird
+      repoURL: davittorchyan/kargo
       imageSelectionStrategy: SemVer
-      allowTags: ^v?[0-9]+\.[0-9]+\.[0-9]+([\+-].*)?$
+      allowTags: ^v?[0-9]+\.[0-9]+(\.[0-9]+)?([\+-].*)?$
   - git:
-      repoURL: https://github.com/davittorch/bluebird-kargo.git
+      repoURL: https://davittorch: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@github.com/davittorch/bluebird-kargo.git
       branch: main
