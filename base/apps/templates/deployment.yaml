@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "bluebird-chart.fullname" . }}
-  namespace: bluebird-dev
+  namespace: bluebird
   labels:
     app: {{ include "bluebird-chart.name" . }}
 spec:
