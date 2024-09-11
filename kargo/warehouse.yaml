@@ -12,5 +12,5 @@ spec:
       imageSelectionStrategy: SemVer
       allowTags: ^v?[0-9]+\.[0-9]+(\.[0-9]+)?([\+-].*)?$
   - git:
-      repoURL: https://davittorch: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@github.com/davittorch/bluebird-kargo.git
+      repoURL: https://davittorch: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@github.com/davittorch/bluebird-kargo.git
       branch: main
