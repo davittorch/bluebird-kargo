@@ -14,7 +14,7 @@ spec:
     metadata:
       name: bluebird-{{path.basename}}
       annotations:
-        kargo.akuity.io/authorized-stage: kargo
+        kargo.akuity.io/authorized-stage: kargo-advanced:*
     spec:
       destination:
         namespace: bluebird-{{path.basename}}
