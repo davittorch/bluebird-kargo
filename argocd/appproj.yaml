@@ -8,6 +8,8 @@ spec:
   - group: ""
     kind: Namespace
   destinations:
+  - namespace: argocd-apps
+    server: '*'
   - name: '*'
     namespace: bluebird*
     server: '*'

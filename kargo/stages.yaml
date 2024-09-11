@@ -12,6 +12,14 @@ stringData:
   password: ${GITHUB_PAT}
 
 ---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: bluebird-dev
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+
+---
 apiVersion: kargo.akuity.io/v1alpha1
 kind: Stage
 metadata:
@@ -20,8 +28,6 @@ metadata:
   annotations:
     kargo.akuity.io/color: red
 spec:
-  # subscriptions:
-  #   warehouse: guestbook
   promotionMechanisms:
     gitRepoUpdates:
     - repoURL: https://github.com/davittorch/bluebird-kargo.git
@@ -31,26 +37,22 @@ spec:
         - image: docker.io/davittorchyan/kargo:v1.0
           path: stages/test
     argoCDAppUpdates:
-    - appName: bluebird
+    - appName: bluebird-dev
+      appNamespace: bluebird-dev
   requestedFreight:
     - origin:
         kind: Warehouse
         name: bluebird
       sources:
         direct: true
-      # gitRepoUpdates:
-      #   repoURL: https://github.com/davittorch/bluebird-kargo.git
-      #   writeBranch: env/dev
-      #   render: {}
-      # argoCDAppUpdates:
-      #   appName: guestbook-dev
-  # promotionMechanisms:
-  #   gitRepoUpdates:
-  #   - repoURL: https://github.com/davittorch/bluebird-kargo.git
-  #     writeBranch: env/dev
-  #     render: {}
-  #   argoCDAppUpdates:
-  #   - appName: guestbook
+
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: bluebird-staging
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
 
 ---
 apiVersion: kargo.akuity.io/v1alpha1
@@ -80,7 +82,8 @@ spec:
         - image: docker.io/davittorchyan/kargo:v1.0
           path: stages/staging
     argoCDAppUpdates:
-    - appName: bluebird
+    - appName: bluebird-staging
+      appNamespace: bluebird-staging
 
 ---
 # apiVersion: kargo.akuity.io/v1alpha1
@@ -140,8 +143,6 @@ spec:
   subscriptions:
     upstreamStages:
       - name: staging
-      # - name: ab-test-a
-      # - name: ab-test-b
   requestedFreight:
     - origin:
         kind: Warehouse
@@ -149,13 +150,14 @@ spec:
       sources:
         stages:
         - staging
-  # promotionMechanisms:
-  #   gitRepoUpdates:
-  #   - repoURL: https://github.com/davittorch/bluebird-kargo.git
-  #     writeBranch: env/prod
-  #     render: {}
-  #   argoCDAppUpdates:
-  #   - appName: guestbook
+
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: bluebird-prod-west
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
 
 ---
 apiVersion: kargo.akuity.io/v1alpha1
@@ -185,7 +187,16 @@ spec:
         - image: docker.io/davittorchyan/kargo:v1.0
           path: stages/prod-west
     argoCDAppUpdates:
-    - appName: bluebird
+    - appName: bluebird-prod-west
+      appNamespace: bluebird-prod-west
+
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: bluebird-prod-central
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
 
 ---
 apiVersion: kargo.akuity.io/v1alpha1
@@ -215,7 +226,16 @@ spec:
         - image: docker.io/davittorchyan/kargo:v1.0
           path: stages/prod-central
     argoCDAppUpdates:
-    - appName: bluebird
+    - appName: bluebird-prod-central
+      appNamespace: bluebird-prod-central
+
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: bluebird-prod-east
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
 
 ---
 apiVersion: kargo.akuity.io/v1alpha1
@@ -236,12 +256,6 @@ spec:
       sources:
         stages:
         - prod
-      # gitRepoUpdates:
-      #   repoURL: https://github.com/davittorch/bluebird-kargo.git
-      #   writeBranch: env/prod-east
-      #   render: {}
-      # argoCDAppUpdates:
-      #   appName: guestbook-prod-east
   promotionMechanisms:
     gitRepoUpdates:
     - repoURL: https://github.com/davittorch/bluebird-kargo.git
@@ -251,4 +265,5 @@ spec:
         - image: docker.io/davittorchyan/kargo:v1.0
           path: stages/prod-east
     argoCDAppUpdates:
-    - appName: bluebird
+    - appName: bluebird-prod-east
+      appNamespace: bluebird-prod-east
