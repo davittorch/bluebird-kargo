@@ -1,0 +1,14 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: argo-rollouts-configmap-binding
+  namespace: kargo-advanced
+subjects:
+  - kind: ServiceAccount
+    name: argo-rollouts
+    namespace: kargo-advanced
+roleRef:
+  kind: Role
+  name: argo-rollouts-configmap-reader
+  apiGroup: rbac.authorization.k8s.io
+

@@ -4,9 +4,11 @@ metadata:
   name: guestbook
   namespace: kargo-advanced
 spec:
+  freightCreationPolicy: Automatic
+  interval: "1m0s"
   subscriptions:
   - image:
-      repoURL: 211125651847.dkr.ecr.us-east-1.amazonaws.com/bluebird:v1.0
+      repoURL: 211125651847.dkr.ecr.us-east-1.amazonaws.com/bluebird
       imageSelectionStrategy: SemVer
       allowTags: ^v?[0-9]+\.[0-9]+\.[0-9]+([\+-].*)?$
   - git:
