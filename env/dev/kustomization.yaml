@@ -5,3 +5,7 @@ resources:
 - ../../base
 
 namespace: bluebird-dev
+clusterSecretStore.namespace: bluebird-dev
+externalSecret.namespace: bluebird-dev
+
+
