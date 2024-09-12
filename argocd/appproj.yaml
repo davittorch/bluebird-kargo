@@ -7,6 +7,8 @@ spec:
   clusterResourceWhitelist:
   - group: ""
     kind: Namespace
+  - group: external-secrets.io
+    kind: ClusterSecretStore
   destinations:
   - namespace: argocd-apps
     server: '*'
