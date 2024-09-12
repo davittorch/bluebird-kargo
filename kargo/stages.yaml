@@ -38,7 +38,7 @@ spec:
           path: stages/test
     argoCDAppUpdates:
     - appName: bluebird-dev
-      appNamespace: bluebird-dev
+      appNamespace: argocd-apps
   requestedFreight:
     - origin:
         kind: Warehouse
@@ -83,7 +83,7 @@ spec:
           path: stages/staging
     argoCDAppUpdates:
     - appName: bluebird-staging
-      appNamespace: bluebird-staging
+      appNamespace: argocd-apps
 
 ---
 # apiVersion: kargo.akuity.io/v1alpha1
@@ -188,7 +188,7 @@ spec:
           path: stages/prod-west
     argoCDAppUpdates:
     - appName: bluebird-prod-west
-      appNamespace: bluebird-prod-west
+      appNamespace: argocd-apps
 
 ---
 apiVersion: v1
@@ -227,7 +227,7 @@ spec:
           path: stages/prod-central
     argoCDAppUpdates:
     - appName: bluebird-prod-central
-      appNamespace: bluebird-prod-central
+      appNamespace: argocd-apps
 
 ---
 apiVersion: v1
@@ -266,4 +266,4 @@ spec:
           path: stages/prod-east
     argoCDAppUpdates:
     - appName: bluebird-prod-east
-      appNamespace: bluebird-prod-east
+      appNamespace: argocd-apps
