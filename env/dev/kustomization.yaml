@@ -4,6 +4,6 @@ kind: Kustomization
 resources:
 - ../../base
 
-namespace: bluebird-dev
-clusterSecretStore.namespace: bluebird-dev
-externalSecret.namespace: bluebird-dev
+namespace: argocd-apps
+clusterSecretStore.namespace: argocd-apps
+externalSecret.namespace: argocd-apps
