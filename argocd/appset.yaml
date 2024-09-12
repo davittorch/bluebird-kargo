@@ -9,7 +9,7 @@ spec:
       repoURL: https://github.com/davittorch/bluebird-kargo.git
       revision: HEAD
       directories:
-      - path: env/*
+      - path: main
   template:
     metadata:
       name: bluebird-{{path.basename}}
