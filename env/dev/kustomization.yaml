@@ -4,8 +4,9 @@ kind: Kustomization
 resources:
 - ../../base
 
-namespace: argocd-apps
-clusterSecretStore.namespace: argocd-apps
-externalSecret.namespace: argocd-apps
+patchesStrategicMerge:
+  - patch-deployment-name.yaml
 
-env: dev
+# namespace: argocd-apps
+# clusterSecretStore.namespace: argocd-apps
+# externalSecret.namespace: argocd-apps

@@ -4,6 +4,9 @@ kind: Kustomization
 resources:
 - ../../base
 
-namespace: bluebird-prod-west
+patchesStrategicMerge:
+  - patch-deployment-name.yaml
 
-env: prod-west
+# namespace: argocd-apps
+# clusterSecretStore.namespace: argocd-apps
+# externalSecret.namespace: argocd-apps

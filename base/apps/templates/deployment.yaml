@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "bluebird-chart.name" . }}-{{ .Values.env }}
+  name: {{ include "bluebird-chart.name" . }}
   namespace: bluebird
   labels:
     app: {{ include "bluebird-chart.name" . }}

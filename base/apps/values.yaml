@@ -39,5 +39,3 @@ externalSecret:
 
 secret:
   name: rds-credentials-k8s
-
-env: central
