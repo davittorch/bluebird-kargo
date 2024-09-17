@@ -9,6 +9,6 @@ nameSuffix: -prod-central
 patchesStrategicMerge:
   - patch-deployment-name.yaml
 
-# namespace: argocd-apps
-# clusterSecretStore.namespace: argocd-apps
-# externalSecret.namespace: argocd-apps
+namespace: argocd-apps
+clusterSecretStore.namespace: argocd-apps
+externalSecret.namespace: argocd-apps
