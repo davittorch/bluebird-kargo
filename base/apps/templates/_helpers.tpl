@@ -6,6 +6,14 @@
 {{- end -}}
 {{- end -}}
 
+{{- define "bluebird-chart.deploymentname" -}}
+{{- if .Values.deploymentnameOverride -}}
+{{- .Values.deploymentnameOverride | trunc 63 | trimSuffix "-" -}}
+{{- else -}}
+{{- .Chart.Name | trunc 63 | trimSuffix "-" -}}
+{{- end -}}
+{{- end -}}
+
 {{- define "bluebird-chart.fullname" -}}
 {{- if .Values.fullnameOverride -}}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" -}}

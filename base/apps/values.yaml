@@ -1,5 +1,3 @@
-# replicaCount: 1
-
 # Pass in your ECR Repo URI
 image:
   repository: "211125651847.dkr.ecr.us-east-1.amazonaws.com/bluebird"

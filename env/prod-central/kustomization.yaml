@@ -5,3 +5,5 @@ resources:
 - ../../base
 
 namespace: bluebird-prod-central
+
+env: prod-central
