@@ -1,4 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: bluebird-chart-dev
+  name: bluebird-chart
+spec:
+  template:
+    metadata:
+      labels:
+        app: bluebird-chart-dev
