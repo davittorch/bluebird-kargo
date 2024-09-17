@@ -12,12 +12,12 @@ stringData:
   password: ${GITHUB_PAT}
 
 ---
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: bluebird-dev
-  annotations:
-    argocd.argoproj.io/sync-wave: "-1"
+# apiVersion: v1
+# kind: Namespace
+# metadata:
+#   name: bluebird-dev
+#   annotations:
+#     argocd.argoproj.io/sync-wave: "-1"
 
 ---
 apiVersion: kargo.akuity.io/v1alpha1
@@ -47,12 +47,12 @@ spec:
         direct: true
 
 ---
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: bluebird-staging
-  annotations:
-    argocd.argoproj.io/sync-wave: "-1"
+# apiVersion: v1
+# kind: Namespace
+# metadata:
+#   name: bluebird-staging
+#   annotations:
+#     argocd.argoproj.io/sync-wave: "-1"
 
 ---
 apiVersion: kargo.akuity.io/v1alpha1
@@ -152,12 +152,12 @@ spec:
         - staging
 
 ---
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: bluebird-prod-west
-  annotations:
-    argocd.argoproj.io/sync-wave: "-1"
+# apiVersion: v1
+# kind: Namespace
+# metadata:
+#   name: bluebird-prod-west
+#   annotations:
+#     argocd.argoproj.io/sync-wave: "-1"
 
 ---
 apiVersion: kargo.akuity.io/v1alpha1
@@ -191,12 +191,12 @@ spec:
       appNamespace: argocd-apps
 
 ---
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: bluebird-prod-central
-  annotations:
-    argocd.argoproj.io/sync-wave: "-1"
+# apiVersion: v1
+# kind: Namespace
+# metadata:
+#   name: bluebird-prod-central
+#   annotations:
+#     argocd.argoproj.io/sync-wave: "-1"
 
 ---
 apiVersion: kargo.akuity.io/v1alpha1
@@ -230,12 +230,12 @@ spec:
       appNamespace: argocd-apps
 
 ---
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: bluebird-prod-east
-  annotations:
-    argocd.argoproj.io/sync-wave: "-1"
+# apiVersion: v1
+# kind: Namespace
+# metadata:
+#   name: bluebird-prod-east
+#   annotations:
+#     argocd.argoproj.io/sync-wave: "-1"
 
 ---
 apiVersion: kargo.akuity.io/v1alpha1

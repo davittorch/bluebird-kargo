@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "bluebird-chart.fullname" . }}
+  name: dev-service
   namespace: bluebird
   labels:
     app: {{ include "bluebird-chart.name" . }}
@@ -12,3 +12,55 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: staging-service
+  namespace: bluebird
+  labels:
+    app: {{ include "bluebird-chart.name" . }}
+spec:
+  selector:
+    app: {{ include "bluebird-chart.name" . }}
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+
+      apiVersion: v1
+
+---
+kind: Service
+metadata:
+  name: prod-service
+  namespace: bluebird
+  labels:
+    app: {{ include "bluebird-chart.name" . }}
+spec:
+  selector:
+    app: {{ include "bluebird-chart.name" . }}
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+
+
+
+
+
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: {{ include "bluebird-chart.fullname" . }}
+#   namespace: bluebird
+#   labels:
+#     app: {{ include "bluebird-chart.name" . }}
+# spec:
+#   selector:
+#     app: {{ include "bluebird-chart.name" . }}
+#   ports:
+#     - protocol: TCP
+#       port: 80
+#       targetPort: 80
