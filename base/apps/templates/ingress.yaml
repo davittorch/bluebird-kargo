@@ -4,13 +4,13 @@ metadata:
   name: bluebird-dev-bluebird-chart
   namespace: bluebird
   labels:
-    app: {{ include "bluebird-chart.name" . }}
+    app: "bluebird-chart"
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
     kubernetes.io/ingress.class: "nginx"
 spec:
   rules:
-    - host: {{ .Values.ingress.host }}
+    - host: "ab2ac14d113d44fbca1e001dc101ee7f-d7c31ee35d87ae02.elb.us-east-1.amazonaws.com"
       http:
         paths:
           - path: /dev

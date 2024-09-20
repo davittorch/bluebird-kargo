@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "bluebird-chart.name" . }}
+  name: bluebird-chart
   namespace: bluebird
   labels:
-    app: {{ include "bluebird-chart.name" . }}
+    app: bluebird-chart
 spec:
   selector:
     matchLabels:
-      app: {{ include "bluebird-chart.name" . }}
+      app: bluebird-chart
   template:
     metadata:
       labels:
-        app: {{ include "bluebird-chart.name" . }}
+        app: bluebird-chart
     spec:
       serviceAccountName: aws-secrets-access
       containers:
-        - name: {{ include "bluebird-chart.name" . }}
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        - name: bluebird-chart
+          imagePullPolicy: always
+          image: 211125651847.dkr.ecr.us-east-1.amazonaws.com/bluebird:v1.0
           resources:
             requests:
               memory: "50Mi"
@@ -26,22 +26,22 @@ spec:
             - name: DB_SERVER
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.secret.name }}
+                  name: rds-credentials-k8s
                   key: host
             - name: DB_USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.secret.name }}
+                  name: rds-credentials-k8s
                   key: username
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.secret.name }}
+                  name: rds-credentials-k8s
                   key: password
             - name: DB_NAME
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.secret.name }} 
+                  name: rds-credentials-k8s 
                   key: dbname
           ports:
             - containerPort: 80

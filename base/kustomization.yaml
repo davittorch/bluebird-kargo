@@ -3,13 +3,13 @@ kind: Kustomization
 
 namespace: bluebird
 
-resources:
-  - rendered.yaml
-
 # resources:
-# - apps/templates/cluster-secrets-store.yaml
-# - apps/templates/deployment.yaml
-# - apps/templates/external-secret.yaml
-# - apps/templates/ingress.yaml
-# - apps/templates/keda.yaml
-# - apps/templates/service.yaml
+#   - rendered.yaml
+
+resources:
+- apps/templates/cluster-secrets-store.yaml
+- apps/templates/deployment.yaml
+- apps/templates/external-secret.yaml
+- apps/templates/ingress.yaml
+- apps/templates/keda.yaml
+- apps/templates/service.yaml
