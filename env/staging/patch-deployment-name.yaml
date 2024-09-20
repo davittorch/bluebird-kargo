@@ -1,6 +1,8 @@
 - op: replace
   path: /spec/rules/0/http/paths/0/path
-  value: /prod-east
+  value: /staging
+
+
 
 
 # apiVersion: apps/v1
@@ -10,10 +12,10 @@
 # patch: 
 #   - op: replace
 #     path: /metadata/name
-#     value: bluebird-chart-prod-east
+#     value: bluebird-chart-staging
 
 
 # apiVersion: apps/v1
 # kind: Deployment
 # metadata:
-#   name: bluebird-chart-prod-east
+#   name: bluebird-chart-staging

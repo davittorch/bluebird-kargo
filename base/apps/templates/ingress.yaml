@@ -13,7 +13,7 @@ spec:
     - host: {{ .Values.ingress.host }}
       http:
         paths:
-          - path: /dev
+          - path: /env-path
             pathType: Prefix
             backend:
               service:
@@ -22,54 +22,60 @@ spec:
                   number: 80
 
 
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: bluebird-staging-bluebird-chart
-  namespace: bluebird
-  labels:
-    app: {{ include "bluebird-chart.name" . }}
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
-    kubernetes.io/ingress.class: "nginx"
-spec:
-  rules:
-    - host: {{ .Values.ingress.host }}
-      http:
-        paths:
-          - path: /staging
-            pathType: Prefix
-            backend:
-              service:
-                name: staging-service
-                port:
-                  number: 80
+# ---
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: bluebird-staging-bluebird-chart
+#   namespace: bluebird
+#   labels:
+#     app: {{ include "bluebird-chart.name" . }}
+#   annotations:
+#     nginx.ingress.kubernetes.io/rewrite-target: /
+#     kubernetes.io/ingress.class: "nginx"
+# spec:
+#   rules:
+#     - host: {{ .Values.ingress.host }}
+#       http:
+#         paths:
+#           - path: /staging
+#             pathType: Prefix
+#             backend:
+#               service:
+#                 name: staging-service
+#                 port:
+#                   number: 80
 
 
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: bluebird-prod-bluebird-chart
-  namespace: bluebird
-  labels:
-    app: {{ include "bluebird-chart.name" . }}
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
-    kubernetes.io/ingress.class: "nginx"
-spec:
-  rules:
-    - host: {{ .Values.ingress.host }}
-      http:
-        paths:
-          - path: /prod
-            pathType: Prefix
-            backend:
-              service:
-                name: prod-service
-                port:
-                  number: 80
+# ---
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: bluebird-prod-bluebird-chart
+#   namespace: bluebird
+#   labels:
+#     app: {{ include "bluebird-chart.name" . }}
+#   annotations:
+#     nginx.ingress.kubernetes.io/rewrite-target: /
+#     kubernetes.io/ingress.class: "nginx"
+# spec:
+#   rules:
+#     - host: {{ .Values.ingress.host }}
+#       http:
+#         paths:
+#           - path: /prod
+#             pathType: Prefix
+#             backend:
+#               service:
+#                 name: prod-service
+#                 port:
+#                   number: 80
+
+
+# ---------------------------------------------------------------------------------------
+
+
+
 
 # apiVersion: networking.k8s.io/v1
 # kind: Ingress

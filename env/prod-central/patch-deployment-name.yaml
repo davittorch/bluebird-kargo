@@ -1,11 +1,18 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: bluebird-chart
-patch: 
-  - op: replace
-    path: /metadata/name
-    value: bluebird-chart-prod-central
+- op: replace
+  path: /spec/rules/0/http/paths/0/path
+  value: /prod-central
+
+
+
+
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: bluebird-chart
+# patch: 
+#   - op: replace
+#     path: /metadata/name
+#     value: bluebird-chart-prod-central
 
 
 # apiVersion: apps/v1

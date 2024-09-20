@@ -1,0 +1,344 @@
+---
+# Source: bluebird-chart/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: dev-service
+  namespace: bluebird
+  labels:
+    app: bluebird-chart
+spec:
+  selector:
+    app: bluebird-chart
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+---
+# Source: bluebird-chart/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: staging-service
+  namespace: bluebird
+  labels:
+    app: bluebird-chart
+spec:
+  selector:
+    app: bluebird-chart
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+---
+# Source: bluebird-chart/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: prod-service
+  namespace: bluebird
+  labels:
+    app: bluebird-chart
+spec:
+  selector:
+    app: bluebird-chart
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+
+
+
+
+
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: release-name-bluebird-chart
+#   namespace: bluebird
+#   labels:
+#     app: bluebird-chart
+# spec:
+#   selector:
+#     app: bluebird-chart
+#   ports:
+#     - protocol: TCP
+#       port: 80
+#       targetPort: 80
+---
+# Source: bluebird-chart/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bluebird-chart
+  namespace: bluebird
+  labels:
+    app: bluebird-chart
+spec:
+  selector:
+    matchLabels:
+      app: bluebird-chart
+  template:
+    metadata:
+      labels:
+        app: bluebird-chart
+    spec:
+      serviceAccountName: aws-secrets-access
+      containers:
+        - name: bluebird-chart
+          imagePullPolicy: Always
+          image: "211125651847.dkr.ecr.us-east-1.amazonaws.com/bluebird:v1.0"
+          resources:
+            requests:
+              memory: "50Mi"
+          env:
+            - name: DB_SERVER
+              valueFrom:
+                secretKeyRef:
+                  name: rds-credentials-k8s
+                  key: host
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: rds-credentials-k8s
+                  key: username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: rds-credentials-k8s
+                  key: password
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: rds-credentials-k8s 
+                  key: dbname
+          ports:
+            - containerPort: 80
+      tolerations:
+        - operator: "Exists"
+---
+# Source: bluebird-chart/templates/ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: bluebird-dev-bluebird-chart
+  namespace: bluebird
+  labels:
+    app: bluebird-chart
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+    - host: 
+      http:
+        paths:
+          - path: /env-path
+            pathType: Prefix
+            backend:
+              service:
+                name: dev-service
+                port:
+                  number: 80
+
+
+# ---
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: bluebird-staging-bluebird-chart
+#   namespace: bluebird
+#   labels:
+#     app: bluebird-chart
+#   annotations:
+#     nginx.ingress.kubernetes.io/rewrite-target: /
+#     kubernetes.io/ingress.class: "nginx"
+# spec:
+#   rules:
+#     - host: 
+#       http:
+#         paths:
+#           - path: /staging
+#             pathType: Prefix
+#             backend:
+#               service:
+#                 name: staging-service
+#                 port:
+#                   number: 80
+
+
+# ---
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: bluebird-prod-bluebird-chart
+#   namespace: bluebird
+#   labels:
+#     app: bluebird-chart
+#   annotations:
+#     nginx.ingress.kubernetes.io/rewrite-target: /
+#     kubernetes.io/ingress.class: "nginx"
+# spec:
+#   rules:
+#     - host: 
+#       http:
+#         paths:
+#           - path: /prod
+#             pathType: Prefix
+#             backend:
+#               service:
+#                 name: prod-service
+#                 port:
+#                   number: 80
+
+
+# ---------------------------------------------------------------------------------------
+
+
+
+
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: release-name-bluebird-chart
+#   namespace: bluebird
+#   labels:
+#     app: bluebird-chart
+# spec:
+#   rules:
+#     - host: 
+#       http:
+#         paths:
+#           - path: /
+#             pathType: Prefix
+#             backend:
+#               service:
+#                 name: release-name-bluebird-chart
+#                 port:
+#                   number: 80
+---
+# Source: bluebird-chart/templates/external-secret.yaml
+# apiVersion: v1
+# kind: ServiceAccount
+# metadata:
+#   name: external-secrets-sa
+#   namespace: bluebird
+
+# ---
+
+# apiVersion: rbac.authorization.k8s.io/v1
+# kind: ClusterRole
+# metadata:
+#   name: secret-manager-role
+# rules:
+# - apiGroups: [""]
+#   resources: ["secrets"]
+#   verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+
+# ---
+
+# apiVersion: rbac.authorization.k8s.io/v1
+# kind: ClusterRoleBinding
+# metadata:
+#   name: secret-manager-rolebinding
+# subjects:
+# - kind: ServiceAccount
+#   name: external-secrets-sa
+#   namespace: bluebird
+# roleRef:
+#   kind: ClusterRole
+#   name: secret-manager-role
+#   apiGroup: rbac.authorization.k8s.io
+---
+# Source: bluebird-chart/templates/keda.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: keda
+  namespace: argocd-apps
+spec:
+  project: default
+  source:
+    repoURL: 'https://kedacore.github.io/charts'
+    targetRevision: 'v2.14.0'
+    chart: keda
+    helm:
+      values: |
+        watchNamespace: ""
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: argocd-apps
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - ServerSideApply=true
+---
+# Source: bluebird-chart/templates/cluster-secrets-store.yaml
+apiVersion: external-secrets.io/v1beta1
+kind: ClusterSecretStore
+metadata:
+  name: aws-secrets
+spec:
+  provider:
+    aws:
+      service: "SecretsManager"
+      region: us-east-1
+      auth:
+        jwt:
+          serviceAccountRef:
+            name: aws-secrets-access
+            namespace: bluebird
+---
+# Source: bluebird-chart/templates/external-secret.yaml
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: external-secrets
+  namespace: bluebird
+spec:
+  # serviceAccountName: external-secrets-sa
+  refreshInterval: 1h
+  secretStoreRef:
+    name: aws-secrets
+    kind: "ClusterSecretStore"
+  target:
+    name: rds-credentials-k8s
+    creationPolicy: Owner
+  data:
+    - secretKey: "host"
+      remoteRef:
+        key: arn:aws:secretsmanager:us-east-1:211125651847:secret:secrets-4D7Rz4
+        property: "host"
+    - secretKey: "username"
+      remoteRef:
+        key: arn:aws:secretsmanager:us-east-1:211125651847:secret:secrets-4D7Rz4
+        property: "username"
+    - secretKey: "password"
+      remoteRef:
+        key: arn:aws:secretsmanager:us-east-1:211125651847:secret:secrets-4D7Rz4
+        property: "password"
+    - secretKey: "dbname"
+      remoteRef:
+        key: arn:aws:secretsmanager:us-east-1:211125651847:secret:secrets-4D7Rz4
+        property: "dbname"
+---
+# Source: bluebird-chart/templates/keda.yaml
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: cpu-scaled-object
+  namespace: bluebird
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: deployment
+    name: argocd-apps-bluebird-chart
+  minReplicaCount: 1
+  maxReplicaCount: 3
+  triggers:
+    - type: memory
+      metricType: Utilization
+      metadata:
+        value: "80"
