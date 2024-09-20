@@ -1,4 +1,8 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: bluebird-chart-prod-west
+- op: replace
+  path: /metadata/name
+  value: bluebird-chart-prod-west
+
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: bluebird-chart-prod-west
