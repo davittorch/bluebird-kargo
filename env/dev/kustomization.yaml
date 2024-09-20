@@ -5,12 +5,14 @@ resources:
 - ../../base
 
 patches:
-  - path: patch-deployment-name.yaml
-    target:
-      group: networking.k8s.io
-      version: v1
-      kind: Ingress
-      name: bluebird-dev-bluebird-chart
+- target:
+    kind: Ingress
+    name: bluebird-dev-bluebird-chart
+  patch: |-
+    - op: replace
+      path: /spec/rules/0/http/paths/0/path
+      value: /dev
+
 
 
 # patchesStrategicMerge:
