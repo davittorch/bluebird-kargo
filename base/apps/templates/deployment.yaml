@@ -17,7 +17,7 @@ spec:
       serviceAccountName: aws-secrets-access
       containers:
         - name: bluebird-chart
-          imagePullPolicy: always
+          imagePullPolicy: Always
           image: 211125651847.dkr.ecr.us-east-1.amazonaws.com/bluebird:v1.0
           resources:
             requests:
